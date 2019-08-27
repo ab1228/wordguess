@@ -36,7 +36,7 @@ window.onload = function renderWord() {
 
     randomLetters = Array.from(randomWord);
     // console.log(randomLetters);
-    for (i = 0; i < randomWord.length; i++) {
+    for (var i = 0; i < randomWord.length; i++) {
         randomLetters[i] = "_"
         // console.log(randomWord[0]);
         document.querySelector("#word").innerHTML = randomLetters;
@@ -44,25 +44,30 @@ window.onload = function renderWord() {
     }
 
 
+    document.getElementById('guesses-left').innerHTML = lettersLeft;
 
 
-}
 
-document.onkeyup = function startGame() {
-    var userGuess = event.key;
-    console.log(userGuess);
 
-    if (randomWord.includes(userGuess)) {
-        for (k = 0; k < randomWord.length; k++) {
-            if (randomWord[k] === userGuess) {
-                randomLetters[k] === userGuess;
+    document.onkeyup = function startGame() {
+        var userGuess = event.key;
+        console.log(userGuess);
+
+        if (randomWord.includes(userGuess)) {
+            for (var k = 0; k < randomWord.length; k++) {
+                if (randomWord[k] === userGuess) {
+                    randomLetters[k] = userGuess;
+
+                }
+
             }
+            lettersLeft--;
+            console.log(lettersLeft);
+            document.querySelector("#word").innerHTML = randomLetters;
         }
-        lettersLeft--;
-        document.querySelector("#guesses-left").innerHTML = lettersLeft;
     }
-}
 
+}
 
 
 
