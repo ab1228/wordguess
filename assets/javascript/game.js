@@ -27,24 +27,28 @@ var wordsArray = [
 var randomWord = wordsArray
 randomWord = randomWord[Math.floor(Math.random() * randomWord.length)];
 
-var lettersLeft = randomWord.length
-var wins = 0;
+
 
 window.onload = function renderWord() {
 
+    var lettersLeft = randomWord.length;
+    var wins = 0;
+    wrongGuesses = [];
+    arrayrandomLetters = [];
 
-
-    randomLetters = Array.from(randomWord);
-    // console.log(randomLetters);
+    arrayrandomLetters = Array.from(randomWord);
+    // console.log(arrayrandomLetters);
     for (var i = 0; i < randomWord.length; i++) {
-        randomLetters[i] = "_"
+        arrayrandomLetters[i] = "_"
         // console.log(randomWord[0]);
-        document.querySelector("#word").innerHTML = randomLetters;
+        document.querySelector("#word").innerHTML = arrayrandomLetters;
 
     }
 
 
     document.getElementById('guesses-left').innerHTML = lettersLeft;
+    document.getElementById('user-wins').innerHTML = wins;
+    document.getElementById("letters-guessed").innerHTML = wrongGuesses;
 
 
 
@@ -56,15 +60,42 @@ window.onload = function renderWord() {
         if (randomWord.includes(userGuess)) {
             for (var k = 0; k < randomWord.length; k++) {
                 if (randomWord[k] === userGuess) {
-                    randomLetters[k] = userGuess;
+                    arrayrandomLetters[k] = userGuess;
 
                 }
 
             }
             lettersLeft--;
             console.log(lettersLeft);
-            document.querySelector("#word").innerHTML = randomLetters;
+            document.querySelector("#word").innerHTML = arrayrandomLetters;
+            document.getElementById('guesses-left').innerHTML = lettersLeft;
         }
+        if (lettersLeft <= 0 && arrayrandomLetters.includes("_") != true) {
+            wins++
+            document.getElementById("user-wins").innerHTML = wins;
+
+        }
+        else {
+            var userGuess = event.key;
+            for (var f = 0; f < randomWord.length; f++) {
+                if (randomWord.indexOf(userGuess) === -1) {
+                    wrongGuesses.push(userGuess);
+                    console.log(wrongGuesses);
+                }
+            }
+            document.getElementById("letters-guessed").innerHTML = wrongGuesses;
+            lettersLeft--
+            document.getElementById('guesses-left').innerHTML = lettersLeft
+
+
+
+        }
+        if (lettersLeft === 0) {
+
+
+        }
+
+
     }
 
 }
