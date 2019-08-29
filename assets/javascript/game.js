@@ -69,7 +69,7 @@ window.onload = function renderWord() {
             }
             lettersLeft--;
             console.log(lettersLeft);
-            document.querySelector("#word").innerHTML = arrayrandomLetters;
+            document.querySelector("#word").innerHTML = arrayrandomLetters.join(" ");
             document.getElementById('guesses-left').innerHTML = lettersLeft;
         }
         if (lettersLeft <= 0 && arrayrandomLetters.includes("_") != true) {
@@ -92,15 +92,15 @@ window.onload = function renderWord() {
 
 
         }
-        // if (lettersLeft === 0) {
-
-
-        // }
+        if (lettersLeft === 0) {
+            document.getElementById("game-over").innerHTML = "Your letters did not equal the word. Press any letters tp start again";
+            startGame();
+        }
 
 
     }
 
-}
+};
 
 
 
