@@ -40,8 +40,9 @@ window.onload = function renderWord() {
     // console.log(arrayrandomLetters);
     for (var i = 0; i < randomWord.length; i++) {
         arrayrandomLetters[i] = "_"
+        var stashComma = arrayrandomLetters.join(" ")
         // console.log(randomWord[0]);
-        document.querySelector("#word").innerHTML = arrayrandomLetters;
+        document.querySelector("#word").innerHTML = arrayrandomLetters.join(" ");
 
     }
 
@@ -61,6 +62,7 @@ window.onload = function renderWord() {
             for (var k = 0; k < randomWord.length; k++) {
                 if (randomWord[k] === userGuess) {
                     arrayrandomLetters[k] = userGuess;
+
 
                 }
 
@@ -83,17 +85,17 @@ window.onload = function renderWord() {
                     console.log(wrongGuesses);
                 }
             }
-            document.getElementById("letters-guessed").innerHTML = wrongGuesses;
+            document.getElementById("letters-guessed").innerHTML = wrongGuesses.join(" ");
             lettersLeft--
             document.getElementById('guesses-left').innerHTML = lettersLeft
 
 
 
         }
-        if (lettersLeft === 0) {
+        // if (lettersLeft === 0) {
 
 
-        }
+        // }
 
 
     }
